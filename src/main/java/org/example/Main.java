@@ -1,17 +1,38 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Arrays;
+import java.util.List;
+
+
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+
+        List<Integer> numbers = Arrays.asList(11, 22, 33, 44, 55, 66, 77, 88, 99, 100);
+        List<Integer> evenNumbers = numbers.stream()
+                .filter(n -> n % 2 == 0)
+                .toList();
+
+        List<Integer> doubledNumbers = evenNumbers.stream()
+                .map(n -> n * 2).sorted(Integer::compareTo).toList();
+
+
+        int sum = doubledNumbers.stream()
+                .reduce(0, Integer::sum);
+
+
+        System.out.println("Processed Numbers:");
+        doubledNumbers.forEach(System.out::println);
+
+
+        List<Integer> processedNumbersList = doubledNumbers.stream()
+                .toList();
+
+
+        System.out.println("Sum of all numbers: " + sum);
+
+
+        System.out.println("Collected Processed Numbers List: " + processedNumbersList);
     }
 }
